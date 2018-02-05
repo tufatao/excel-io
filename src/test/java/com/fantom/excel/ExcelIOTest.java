@@ -1,5 +1,6 @@
 package com.fantom.excel;
 
+import com.fantom.excel.support.JsonUtil;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
 
@@ -18,11 +19,14 @@ public class ExcelIOTest {
         Map<String, Object> map = new HashMap<>();
         map.put("name", "tom");
         map.put("age", 18);
-        File file = new File("/Users/fantom/Documents/excelTest.csv");
+        mapList.add(map);
+//        File file = new File("/Users/fantom/Documents/excelTest.csv");
+        File file = new File("D:\\excelTest.csv");
         try {
-            ExcelIO.getWriter().generate(mapList, "sheetName")
+            ExcelIO.getWriter().generate(mapList, "mySheet")
                     .write(file);
             List<Map<String, Object>> result = ExcelIO.getReader().read(file).toMaplist();
+            System.out.println(JsonUtil.obj2Json(result));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InvalidFormatException e) {

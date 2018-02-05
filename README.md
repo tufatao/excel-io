@@ -32,7 +32,9 @@ result = ExcelIO.getReader().read(file).toMaplist();
 result = ExcelIO.getReader().read(file, password).toMaplist(sheetIndex, titleRowIndex);
 ```
 Map list to local file
-* generate方法按需指定sheeName，默认sheetName(sheet1)；
+* generate方法按需指定sheeName，默认sheetName(sheet1)
+，mapList字段中的Object, 数字类型(int, float, double) 已针对处理
+  , 其他类型请先自行处理, 或默认按toString()取值
 * write方法可按需写入File 或 OutputStream，这个也只是个代理；
 
 #### Example
